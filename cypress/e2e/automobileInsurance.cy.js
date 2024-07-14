@@ -17,9 +17,13 @@ const { msgVehicleData, msgInsurantData, msgProductData } = msg_erro;
 // Descreve o conjunto de testes para o formulário de seguros
 describe('Formulário de Seguros', () => {
 
+  // Executa antes de cada teste
+  beforeEach(() => {
+    vehicleDataPage.visitVehicle(); // Visita a página inicial do formulário de veículo
+  });
+
   // Teste para enviar o formulário de seguros com sucesso
   it('Enviar o formulário de seguros com sucesso', () => {
-    vehicleDataPage.visitVehicle(); // Visita a página inicial do formulário de veículo
     vehicleDataPage.fillVehicleData(vehicleData); // Preenche os campos do veículo com dados válidos
     vehicleDataPage.nextVehicleData(); // Avança para a próxima seção do formulário
     vehicleDataPage.fillInsurantData(insurantData); // Preenche os dados do segurado
@@ -32,7 +36,6 @@ describe('Formulário de Seguros', () => {
 
   // Teste para validar mensagens de erro em campos obrigatórios da seção VehicleData
   it('Validar mensagens de erro em todos os campos obrigatórios de VehicleData', () => {
-    vehicleDataPage.visitVehicle(); // Visita a página inicial do formulário de veículo
     vehicleDataPage.fillVehicleData(vehicleData); // Preenche os campos do veículo com dados válidos
     // Percorre cada campo de vehicleData para validação
     for (const campo of Object.keys(vehicleData)) {
@@ -46,7 +49,6 @@ describe('Formulário de Seguros', () => {
 
   // Teste para validar mensagens de erro em campos obrigatórios da seção InsurantData
   it('Validar mensagens de erro em todos os campos obrigatórios de InsurantData', () => {
-    vehicleDataPage.visitVehicle(); // Visita a página inicial do formulário de veículo
     vehicleDataPage.nextVehicleData(); // Avança para a seção de dados do segurado
     // Percorre cada campo de insurantData para validação
     for (const campo of Object.keys(insurantData)) {
@@ -60,7 +62,6 @@ describe('Formulário de Seguros', () => {
 
   // Teste para validar mensagens de erro em campos obrigatórios da seção ProductData
   it('Validar mensagens de erro em todos os campos obrigatórios de ProductData', () => {
-    vehicleDataPage.visitVehicle(); // Visita a página inicial do formulário de veículo
     vehicleDataPage.nextVehicleData(); // Avança para a seção de dados do segurado
     vehicleDataPage.fillInsurantData(insurantData); // Preenche os dados do segurado
     vehicleDataPage.nextInsurantData(); // Avança para a seção de dados do produto
