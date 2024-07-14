@@ -15,8 +15,8 @@ const msg_erro = require('../../fixtures/automobileInsuranceError.json');
 const { msgVehicleData, msgInsurantData, msgProductData } = msg_erro;
 
 // Primeiro conjunto de testes: Preencher todo o formulário
-describe('Preencher form', () => {
-  it('sucesso', () => {
+describe('Formulário de Seguros', () => {
+  it('Enviar o formulário de seguros com sucesso', () => {
     vehicleDataPage.visitVehicle(); // Aqui estamos abrindo a página inicial do formulário de veículo
     vehicleDataPage.fillVehicleData(vehicleData); // Preenchemos os campos do veículo com os dados do JSON
     vehicleDataPage.nextVehicleData(); // Avançamos para a próxima parte do formulário
@@ -27,12 +27,8 @@ describe('Preencher form', () => {
     vehicleDataPage.fillPriceOptionData(); // Aqui selecionamos opções de preço e enviamos a cotação
     vehicleDataPage.fillSendQuoteData(sendQuote); // Enviamos os dados para finalizar a cotação
   });
-});
 
-// Segundo conjunto de testes: Validar os campos da tela de dados do segurado
-describe('Validar campos tela insurantData', () => {
-  // Validação de dados do veículo
-  it('vehicleData', () => {
+  it('Validar mensagens de erro em todos os campos obrigatórios de VehicleData', () => {
     vehicleDataPage.visitVehicle(); // Inicializamos a página do formulário de veículo
     vehicleDataPage.fillVehicleData(vehicleData); // Preenchemos os dados do veículo com informações válidas
     // Percorre os campos de vehicleData para validação
@@ -44,11 +40,12 @@ describe('Validar campos tela insurantData', () => {
         // Valida campos de texto
         validarCampoTexto(campo, '1231231231', msgVehicleData[campo], elem); // Verificamos se os campos de texto estão corretos
       }
+      cy.screenshot(`Campo: ${campo} obrigatórios de Vehicle Data`)
     }
   });
 
   // Validação de dados do segurado
-  it('insurantData', () => {
+  it('Validar mensagens de erro em todos os campos obrigatórios de insurantData', () => {
     vehicleDataPage.visitVehicle(); // Inicializamos a página do formulário de veículo
     vehicleDataPage.nextVehicleData(); // Avançamos para a próxima seção do formulário
     // Percorre os campos de insurantData para validação
@@ -60,11 +57,12 @@ describe('Validar campos tela insurantData', () => {
         // Valida campos de texto
         validarCampoTexto(campo, '1231231231', msgInsurantData[campo], elem); // Verificamos se os campos de texto estão corretos
       }
+      cy.screenshot(`Campo: ${campo} obrigatórios de Insurant Data`)
     }
   });
 
   // Validação de dados do produto
-  it('productData', () => {
+  it('Validar mensagens de erro em todos os campos obrigatórios de productData', () => {
     vehicleDataPage.visitVehicle(); // Inicializamos a página do formulário de veículo
     vehicleDataPage.nextVehicleData(); // Avançamos para a próxima seção do formulário
     vehicleDataPage.fillInsurantData(insurantData); // Preenchemos os dados do segurado
@@ -76,6 +74,7 @@ describe('Validar campos tela insurantData', () => {
         // Valida campos de seleção
         validarCampoSelecao(campo, msgProductData[campo], elem); // Verificamos se os campos de seleção estão corretos
       } 
+      cy.screenshot(`Campo: ${campo} obrigatórios de Product Data`)
     }
   });
 });
