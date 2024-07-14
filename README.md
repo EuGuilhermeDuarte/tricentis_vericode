@@ -8,7 +8,7 @@ Ferramentas utilizadas: Cypress, JS, PageObejcts.
 ## Configurações
 
 1. git clone
-2. install cypress-mochawesome-reporter: npm i --save-dev cypress-mochawesome-reporter
+2. install cypress-mochawesome-reporter: npm i --save-dev cypress-mochawesome-reporter 
 
 ---
 

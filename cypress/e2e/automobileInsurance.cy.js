@@ -1,17 +1,17 @@
 // Importa funções de validação e a classe da página de dados do veículo
-import { validarCampoSelecao, validarCampoTexto } from '../../support/utils/automobileInsuranceUtils';
-import VehicleDataPage from '../../support/pageObjects/automobileInsurance.page';
+import { validarCampoSelecao, validarCampoTexto } from '../support/utils/automobileInsuranceUtils';
+import VehicleDataPage from '../support/pageObjects/automobileInsurance.page';
 
 // Instancia a página de dados do veículo
 const vehicleDataPage = new VehicleDataPage();
-const elem = require('../../support/elements/automobileInsurance.elements').ELEMENTS;
+const elem = require('../support/elements/automobileInsurance.elements').ELEMENTS;
 
 // Importa os dados dos arquivos JSON
-const dados = require('../../fixtures/automobileInsuranceData.json');
+const dados = require('../fixtures/automobileInsuranceData.json');
 const { vehicleData, insurantData, productData, sendQuote } = dados;
 
 // Importa mensagens de erro dos arquivos JSON
-const msg_erro = require('../../fixtures/automobileInsuranceError.json');
+const msg_erro = require('../fixtures/automobileInsuranceError.json');
 const { msgVehicleData, msgInsurantData, msgProductData } = msg_erro;
 
 // Descreve o conjunto de testes para o formulário de seguros
