@@ -1,0 +1,30 @@
+{
+    "msgVehicleData": {
+      "make": "Select an option",
+      "model": "Select an option",
+      "cylindercapacity": "Must be a number between 1 and 2000",
+      "engineperformance": "Must be a number between 1 and 2000",
+      "dateofmanufacture": "Must be a valid date",
+      "numberofseats": "Select an option",
+      "numberofseatsmotorcycle": "Select an option",
+      "fuel": "Select an option",
+      "payload": "Must be a number between 1 and 1000",
+      "totalweight": "Must be a number between 100 and 50000",
+      "listprice": "Must be a number between 500 and 100000",
+      "annualmileage": "Must be a number between 100 and 100000"
+    },
+    "msgInsurantData": {
+      "firstname": "Must be at least 2 characters long and must only contain letters",
+      "lastname": "Must be at least 2 characters long and must only contain letters",
+      "country": "Select an option",
+      "zipcode": "Must be a number between 4 and 8 digits",
+      "occupation": "Select an option"
+    },
+    "msgProductData": {
+      "insurancesum": "Select an option",
+      "meritrating": "Select an option",
+      "damageinsurance": "Select an option",
+      "courtesycar": "Select an option"
+    }
+  }
+  
