@@ -22,7 +22,6 @@ class VehicleDataPage {
         cy.get(elem.totalweight).type(data.totalweight); // Campo: totalweight
         cy.get(elem.listprice).type(data.listprice); // Campo: listprice
         cy.get(elem.annualmileage).type(data.annualmileage); // Campo: annualmileage
-        //cy.get(elem.nextButton).click(); // Comentado para evitar navegação automática
     }
 
     // Avança para a próxima seção (Dados do Segurado)
