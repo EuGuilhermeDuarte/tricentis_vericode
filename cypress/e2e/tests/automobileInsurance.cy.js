@@ -1,4 +1,4 @@
-// Importa funções de validação de campos e a classe da página de dados do veículo
+// Importa funções de validação e a classe da página de dados do veículo
 import { validarCampoSelecao, validarCampoTexto } from '../../support/utils/automobileInsuranceUtils';
 import VehicleDataPage from '../../support/pageObjects/automobileInsurance.page';
 
@@ -14,67 +14,62 @@ const { vehicleData, insurantData, productData, sendQuote } = dados;
 const msg_erro = require('../../fixtures/automobileInsuranceError.json');
 const { msgVehicleData, msgInsurantData, msgProductData } = msg_erro;
 
-// Primeiro conjunto de testes: Preencher todo o formulário
+// Descreve o conjunto de testes para o formulário de seguros
 describe('Formulário de Seguros', () => {
+
+  // Teste para enviar o formulário de seguros com sucesso
   it('Enviar o formulário de seguros com sucesso', () => {
-    vehicleDataPage.visitVehicle(); // Aqui estamos abrindo a página inicial do formulário de veículo
-    vehicleDataPage.fillVehicleData(vehicleData); // Preenchemos os campos do veículo com os dados do JSON
-    vehicleDataPage.nextVehicleData(); // Avançamos para a próxima parte do formulário
-    vehicleDataPage.fillInsurantData(insurantData); // Aqui inserimos os dados do segurado
-    vehicleDataPage.nextInsurantData(); // Avançamos novamente para a próxima seção do formulário
-    vehicleDataPage.fillProductData(productData); // Preenchemos os dados do produto a ser segurado
-    vehicleDataPage.nextProductData(); // Avançamos para a próxima seção do formulário
-    vehicleDataPage.fillPriceOptionData(); // Aqui selecionamos opções de preço e enviamos a cotação
-    vehicleDataPage.fillSendQuoteData(sendQuote); // Enviamos os dados para finalizar a cotação
+    vehicleDataPage.visitVehicle(); // Visita a página inicial do formulário de veículo
+    vehicleDataPage.fillVehicleData(vehicleData); // Preenche os campos do veículo com dados válidos
+    vehicleDataPage.nextVehicleData(); // Avança para a próxima seção do formulário
+    vehicleDataPage.fillInsurantData(insurantData); // Preenche os dados do segurado
+    vehicleDataPage.nextInsurantData(); // Avança para a seção de produto
+    vehicleDataPage.fillProductData(productData); // Preenche os dados do produto
+    vehicleDataPage.nextProductData(); // Avança para a seção de opções de preço
+    vehicleDataPage.fillPriceOptionData(); // Seleciona as opções de preço
+    vehicleDataPage.fillSendQuoteData(sendQuote); // Preenche os dados de envio da cotação
   });
 
+  // Teste para validar mensagens de erro em campos obrigatórios da seção VehicleData
   it('Validar mensagens de erro em todos os campos obrigatórios de VehicleData', () => {
-    vehicleDataPage.visitVehicle(); // Inicializamos a página do formulário de veículo
-    vehicleDataPage.fillVehicleData(vehicleData); // Preenchemos os dados do veículo com informações válidas
-    // Percorre os campos de vehicleData para validação
+    vehicleDataPage.visitVehicle(); // Visita a página inicial do formulário de veículo
+    vehicleDataPage.fillVehicleData(vehicleData); // Preenche os campos do veículo com dados válidos
+    // Percorre cada campo de vehicleData para validação
     for (const campo of Object.keys(vehicleData)) {
       if (['make', 'model', 'numberofseats', 'numberofseatsmotorcycle', 'fuel'].includes(campo)) {
-        // Valida campos de seleção
-        validarCampoSelecao(campo, msgVehicleData[campo], elem); // Verificamos se os campos de seleção estão corretos
+        validarCampoSelecao(campo, msgVehicleData[campo], elem); // Valida campos de seleção
       } else if (['cylindercapacity', 'engineperformance', 'payload', 'totalweight', 'listprice', 'annualmileage'].includes(campo)) {
-        // Valida campos de texto
-        validarCampoTexto(campo, '1231231231', msgVehicleData[campo], elem); // Verificamos se os campos de texto estão corretos
+        validarCampoTexto(campo, '112121155484845', msgVehicleData[campo], elem); // Valida campos de texto
       }
-      cy.screenshot(`Campo: ${campo} obrigatórios de Vehicle Data`)
     }
   });
 
-  // Validação de dados do segurado
-  it('Validar mensagens de erro em todos os campos obrigatórios de insurantData', () => {
-    vehicleDataPage.visitVehicle(); // Inicializamos a página do formulário de veículo
-    vehicleDataPage.nextVehicleData(); // Avançamos para a próxima seção do formulário
-    // Percorre os campos de insurantData para validação
+  // Teste para validar mensagens de erro em campos obrigatórios da seção InsurantData
+  it('Validar mensagens de erro em todos os campos obrigatórios de InsurantData', () => {
+    vehicleDataPage.visitVehicle(); // Visita a página inicial do formulário de veículo
+    vehicleDataPage.nextVehicleData(); // Avança para a seção de dados do segurado
+    // Percorre cada campo de insurantData para validação
     for (const campo of Object.keys(insurantData)) {
       if (['country'].includes(campo)) {
-        // Valida campos de seleção
-        validarCampoSelecao(campo, msgInsurantData[campo], elem); // Verificamos se os campos de seleção estão corretos
+        validarCampoSelecao(campo, msgInsurantData[campo], elem); // Valida campos de seleção
       } else if (['firstname', 'lastname', 'zipcode', 'occupation'].includes(campo)) {
-        // Valida campos de texto
-        validarCampoTexto(campo, '1231231231', msgInsurantData[campo], elem); // Verificamos se os campos de texto estão corretos
+        validarCampoTexto(campo, '1231231231', msgInsurantData[campo], elem); // Valida campos de texto
       }
-      cy.screenshot(`Campo: ${campo} obrigatórios de Insurant Data`)
     }
   });
 
-  // Validação de dados do produto
-  it('Validar mensagens de erro em todos os campos obrigatórios de productData', () => {
-    vehicleDataPage.visitVehicle(); // Inicializamos a página do formulário de veículo
-    vehicleDataPage.nextVehicleData(); // Avançamos para a próxima seção do formulário
-    vehicleDataPage.fillInsurantData(insurantData); // Preenchemos os dados do segurado
-    vehicleDataPage.nextInsurantData(); // Avançamos para a próxima seção do formulário
-    vehicleDataPage.fillProductData(productData); // Preenchemos os dados do produto a ser segurado
-    // Percorre os campos de msgProductData para validação
+  // Teste para validar mensagens de erro em campos obrigatórios da seção ProductData
+  it('Validar mensagens de erro em todos os campos obrigatórios de ProductData', () => {
+    vehicleDataPage.visitVehicle(); // Visita a página inicial do formulário de veículo
+    vehicleDataPage.nextVehicleData(); // Avança para a seção de dados do segurado
+    vehicleDataPage.fillInsurantData(insurantData); // Preenche os dados do segurado
+    vehicleDataPage.nextInsurantData(); // Avança para a seção de dados do produto
+    vehicleDataPage.fillProductData(productData); // Preenche os dados do produto
+    // Percorre cada campo de msgProductData para validação
     for (const campo of Object.keys(msgProductData)) {
       if (['insurancesum', 'meritrating', 'damageinsurance', 'courtesycar'].includes(campo)) {
-        // Valida campos de seleção
-        validarCampoSelecao(campo, msgProductData[campo], elem); // Verificamos se os campos de seleção estão corretos
-      } 
-      cy.screenshot(`Campo: ${campo} obrigatórios de Product Data`)
+        validarCampoSelecao(campo, msgProductData[campo], elem); // Valida campos de seleção
+      }
     }
   });
 });
