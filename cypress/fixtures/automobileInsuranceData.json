@@ -1,0 +1,40 @@
+{
+    "vehicleData": {
+      "make": "Audi",
+      "model": "Scooter",
+      "cylindercapacity": "123",
+      "engineperformance": "123",
+      "dateofmanufacture": "09/10/1990",
+      "numberofseats": "1",
+      "numberofseatsmotorcycle": "1",
+      "fuel": "Petrol",
+      "payload": "123",
+      "totalweight": "123",
+      "listprice": "1230",
+      "annualmileage": "123"
+    },
+    "insurantData": {
+      "firstname": "John",
+      "lastname": "Doe",
+      "birthdate": "09/10/1990",
+      "country": "Afghanistan",
+      "zipcode": "1231",
+      "occupation": "Employee"
+    },
+    "productData": {
+      "startdate": "09/10/2029",
+      "insurancesum": "3.000.000,00",
+      "meritrating": "Super Bonus",
+      "damageinsurance": "No Coverage",
+      "optionalproducts": "Euro Protection",
+      "courtesycar": "No"
+    },
+    "sendQuote": {
+      "email": "teste@ts4t.com",
+      "phone": "1234567890",
+      "username": "Guilherme",
+      "password": "Teste@123",
+      "confirmpassword": "Teste@123"
+    }
+  }
+  
