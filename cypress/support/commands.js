@@ -30,6 +30,7 @@ Cypress.on('uncaught:exception', (err, runnable) => {
     return false;
 });
 
+// Screenshot a cada cenário 
 afterEach(function () {
     if (this.currentTest.state === 'failed') {
       const screenshotFileName = `${this.currentTest.parent.title} -- ${this.currentTest.title} (failed).png`;

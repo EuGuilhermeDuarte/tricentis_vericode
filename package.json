@@ -7,14 +7,13 @@
     "screenshotsFolder": "cypress/screenshots",
     "cypress:clean": "rm -rf cypress/screenshots/*.png",
     "cypress:run": "npm run cypress:clean && cypress run"
-    
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "devDependencies": {
-    "cypress": "^13.13.0"
+    "cypress": "^13.13.0",
+    "cypress-mochawesome-reporter": "^3.8.2"
   }
-  
 }
